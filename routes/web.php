@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArchiveController;
+use App\Http\Controllers\Custormers_Report_Controller;
+use App\Http\Controllers\Invoice_Report_Controller;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\InvoicesAttachmentsController;
 use App\Http\Controllers\InvoicesDetalesController;
@@ -77,7 +79,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
 });
 
+Route::get('invoices_report',[Invoice_Report_Controller::class, 'index'])->middleware('auth');
+Route::post('Search_invoices',[Invoice_Report_Controller::class, 'Search_invoices'])->middleware('auth');
 
+
+Route::get('customers_report',[Custormers_Report_Controller::class, 'index'])->middleware('auth');
+Route::post('Search_customers',[Custormers_Report_Controller::class, 'Search_customers'])->middleware('auth');
 
 Route::get('/{page}', [AdminController::class, 'index']);
 
